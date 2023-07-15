@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Infos } from '../../utils/context';
 import { Form, Input } from '../../assets/styles/GlobalStyle';
 import { server } from '../../utils/core';
+import Header from '../Header';
 
 export default function SignIn() {
   const { setInfo, ...rest } = useContext(Infos);
@@ -28,10 +29,13 @@ export default function SignIn() {
       }); // prettier-ignore
   };
   return (
-    <Form onSubmit={login}>
-      <Input placeholder="E-mail" type="email" name="email" />
-      <Input placeholder="Senha" type="password" autoComplete="new-password" name="password" />
-      <Input type="submit" value="Entrar" />
-    </Form>
+    <>
+      <Header />
+      <Form onSubmit={login}>
+        <Input placeholder="E-mail" type="email" name="email" />
+        <Input placeholder="Senha" type="password" autoComplete="new-password" name="password" />
+        <Input type="submit" value="Entrar" />
+      </Form>
+    </>
   );
 }

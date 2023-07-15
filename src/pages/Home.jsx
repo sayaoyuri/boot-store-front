@@ -1,7 +1,11 @@
-import { useContext } from 'react';
-import { Infos } from '../utils/context.jsx';
+import Header from '../components/Header.jsx';
 
 export default function Home() {
-  const { test } = useContext(Infos);
-  return <div>HomePage - {test}</div>;
+  return (
+    <>
+      <Header />
+      <main></main>
+      <footer></footer>
+    </>
+  );
 }
