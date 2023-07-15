@@ -12,7 +12,7 @@ export default function SignInPage() {
   );
 }
 
-const SingInContainer = styled.section`
+export const SingInContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
