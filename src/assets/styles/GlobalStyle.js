@@ -38,3 +38,9 @@ export const Input = styled.input`
     background-color: ${({ bg }) => (!bg ? '#aaaaaa' : bg)};
   }
 `;
+
+export const center = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
