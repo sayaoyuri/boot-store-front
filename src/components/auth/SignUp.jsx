@@ -9,34 +9,42 @@ import { AuthContainer } from './AuthContainer';
 export default function SignIn() {
   const { setInfo, ...rest } = useContext(Infos);
   const navigate = useNavigate();
-  const login = (e) => {
-    e.preventDefault();
 
-    const user = {
+  const signup = (e) => {
+    e.preventDefault();
+    console.log(e.target.password.value, e.target.confirmPassword.value);
+    if (e.target.password.value !== e.target.confirmPassword.value) {
+      return alert('"Senha" e "Confirme a Senha" devem ser iguais.');
+    }
+    setInfo({ ...rest, loading: true });
+
+    const info = {
+      name: e.target.name.value,
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    server.post(`/sign-in`, user)
-      .then(({ data }) => {
-        localStorage.setItem('user', JSON.stringify(data));
-        setInfo({ user: data, ...rest })
-        navigate('/');
-        console.log(data);
+    server.post(`/sign-up`, info)
+      .then(() => {
+        navigate('/auth/sign-in');
+        setInfo({ ...rest, loading: false });
       })
       .catch((error) => {
         console.log(error);
         alert(error.response.data);
       }); // prettier-ignore
   };
+
   return (
     <>
       <Header />
       <AuthContainer>
-        <Title>Login</Title>
-        <Form onSubmit={login}>
+        <Title>Cadastrar</Title>
+        <Form onSubmit={signup}>
+          <Input placeholder="Nome" type="name" name="name" />
           <Input placeholder="E-mail" type="email" name="email" />
           <Input placeholder="Senha" type="password" autoComplete="new-password" name="password" />
+          <Input placeholder="Confirme a senha" type="password" autoComplete="new-password" name="confirmPassword" />
           <Input type="submit" value="Entrar" />
         </Form>
       </AuthContainer>

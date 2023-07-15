@@ -28,7 +28,7 @@ export const Input = styled.input`
   padding: 15px;
   outline: none;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   width: 100%;
   border: 1px solid #dedede;
@@ -43,4 +43,10 @@ export const center = css`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const Title = styled.h2`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
 `;

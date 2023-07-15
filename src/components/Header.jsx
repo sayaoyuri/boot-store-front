@@ -2,12 +2,15 @@ import { MdSearch, MdShoppingCart } from 'react-icons/md';
 import styled from 'styled-components';
 import { center } from '../assets/styles/GlobalStyle.js';
 import Account from '../components/account/Account.jsx';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   const cart = () => {};
   return (
     <HeaderContainer>
-      <h1>GameStore</h1>
+      <Link to="/" className="logo">
+        GameStore
+      </Link>
       <div className="search">
         <input type="search" name="" id="" />
         <MdSearch size="1.2em" />
@@ -31,9 +34,11 @@ const HeaderContainer = styled.header`
   padding: 20px 20px;
   background-color: #aaaaaa;
 
-  h1 {
+  .logo {
     font-size: 18px;
     margin: 0px auto 0px 20px;
+    text-decoration: none;
+    color: #000;
   }
   div.search {
     ${center}

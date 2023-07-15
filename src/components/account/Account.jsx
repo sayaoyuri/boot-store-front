@@ -1,11 +1,9 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Infos } from '../../utils/context';
-import { Form, Input } from '../../assets/styles/GlobalStyle';
-import { server } from '../../utils/core';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { MdPerson, MdSearch, MdShoppingCart } from 'react-icons/md';
+import { MdPerson } from 'react-icons/md';
 
 export default function Account() {
   const { user } = useContext(Infos);
