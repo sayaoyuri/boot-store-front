@@ -1,16 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { publicPaths } from '../../utils/core';
 
 export default function AuthVerification({ isAuthenticated, children }) {
   const verificationCount = useRef(0);
   const navigate = useNavigate();
-  const publicPaths = ['/', '/sign-in', '/sign-up', '/cart'];
   const { pathname } = useLocation();
 
   useEffect(() => {
     if (!isAuthenticated && !publicPaths.includes(pathname)) {
-      console.log(verificationCount.current);
       if (++verificationCount.current === 1) {
         setTimeout(() => {
           navigate('/');
