@@ -18,9 +18,9 @@ export default function Account() {
           <li>User Name</li>
         </ul>
       )}
-      <button onClick={() => useState(!user ? navigate('/auth/sign-in') : setAccount(true))}>
+      <button onClick={() => (!user ? navigate('/sign-in') : setAccount(true))}>
         <MdPerson size="1.5em" />
-        {!user ? 'Entrar' : 'Usuário'}
+        {!user ? 'Entrar' : user.name}
       </button>
     </AccountContainer>
   );

@@ -6,7 +6,7 @@ export default function SignInPage() {
   return (
     <SingInContainer>
       <SignIn />
-      <Link to="/auth/sign-up">Primeira vez? Cadastre-se!</Link>
+      <Link to="/sign-up">Primeira vez? Cadastre-se!</Link>
       <Link to="#">Esqueceu a Senha?</Link>
     </SingInContainer>
   );

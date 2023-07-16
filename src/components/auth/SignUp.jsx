@@ -26,7 +26,7 @@ export default function SignIn() {
 
     server.post(`/sign-up`, info)
       .then(() => {
-        navigate('/auth/sign-in');
+        navigate('/sign-in');
         setInfo({ ...rest, loading: false });
       })
       .catch((error) => {

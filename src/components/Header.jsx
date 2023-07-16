@@ -1,11 +1,14 @@
 import { MdSearch, MdShoppingCart } from 'react-icons/md';
 import styled from 'styled-components';
 import { center } from '../assets/styles/GlobalStyle.js';
-import Account from '../components/account/Account.jsx';
-import { Link } from 'react-router-dom';
+import Account from './auth/Account.jsx';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Header() {
-  const cart = () => {};
+  const navigate = useNavigate();
+  const cart = () => {
+    navigate('/cart');
+  };
   return (
     <HeaderContainer>
       <Link to="/" className="logo">

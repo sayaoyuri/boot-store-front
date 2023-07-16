@@ -5,6 +5,7 @@ import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import RegisterGamePage from './pages/RegisterGame';
 import GameDetailsPage from './pages/GameDetailsPage';
+import CartPage from './pages/purchase/CartPage';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <InfoProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/auth/sign-in" element={<SignInPage />} />
-          <Route path="/auth/sign-up" element={<SignUpPage />} />
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/register-game" element={<RegisterGamePage />} />
           <Route path="/games/:id" element={<GameDetailsPage />} />
         </Routes>

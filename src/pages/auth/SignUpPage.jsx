@@ -6,7 +6,7 @@ export default function SignUpPage() {
   return (
     <SingUpContainer>
       <SignUp />
-      <Link to="/auth/sign-in">Já Cadastrado? Faça Login!</Link>
+      <Link to="/sign-in">Já Cadastrado? Faça Login!</Link>
     </SingUpContainer>
   );
 }

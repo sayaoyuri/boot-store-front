@@ -19,6 +19,7 @@ export default function SignIn() {
 
     server.post(`/sign-in`, user)
       .then(({ data }) => {
+        console.log(rest);
         localStorage.setItem('user', JSON.stringify(data));
         setInfo({ user: data, ...rest })
         navigate('/');
