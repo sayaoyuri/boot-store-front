@@ -43,6 +43,9 @@ const HeaderContainer = styled.header`
     ${center}
     width: 250px;
     gap: 10px;
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
 
   input[type='search'] {

@@ -21,6 +21,7 @@ export default function Account() {
 
 const AccountContainer = styled.div`
   button {
+    width: max-content;
     display: flex;
     height: 20px;
     svg {
