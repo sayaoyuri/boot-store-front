@@ -11,7 +11,7 @@ export function CartLogo() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { order } = useContext(Infos);
-  const count = order?.items.length || 0;
+  const count = order?.items?.length || 0;
 
   return (
     <CartLogoContainer count={count} onClick={() => navigate(pathname !== '/cart' ? '/cart' : '/')}>
@@ -41,6 +41,8 @@ const CartLogoContainer = styled.div`
 `;
 
 export function Cart() {
+  const navigate = useNavigate();
+
   /* 
   get /orders  - token.
   dc0b71f9-5c3b-4ba8-806c-dc730a805ab8
@@ -57,17 +59,17 @@ export function Cart() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [order]);
 
   return (
     <CartItemsContainer>
       <Title>{order?.items?.length === 0 && 'Não há Produtos no '}Carrinho</Title>
       <ul>
-        {order?.items.map((i, index) => (
+        {order?.items?.map((i, index) => (
           <CartItem key={index} index={index} image={i.image} name={i.name} price={i.price} />
         ))}
       </ul>
-      <button>Continue</button>
+      {order?.items?.length !== 0 && <button onClick={() => navigate('/checkout')}>Continue</button>}
     </CartItemsContainer>
   );
 }
@@ -115,15 +117,7 @@ const CartItem = ({ index, image, name, price }) => {
         console.log(err);
       });
   };
-  /* 
-  category
 
-image
-"image url"
-name
-platform
-price
-  */
   return (
     <CartItemContainer>
       <div className="banner">

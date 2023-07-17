@@ -6,6 +6,7 @@ import SignUpPage from './pages/auth/SignUpPage';
 import RegisterGamePage from './pages/RegisterGame';
 import GameDetailsPage from './pages/GameDetailsPage';
 import CartPage from './pages/orders/CartPage';
+import CheckoutPage from './pages/orders/CheckoutPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/register-game" element={<RegisterGamePage />} />
           <Route path="/games/:id" element={<GameDetailsPage />} />
         </Routes>
