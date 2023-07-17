@@ -5,4 +5,4 @@ export const server = axios.create({
 });
 
 
-export const publicPaths = ['/', '/sign-in', '/sign-up', '/cart'];
+export const publicPaths = ['/', '/sign-in', '/sign-up'];

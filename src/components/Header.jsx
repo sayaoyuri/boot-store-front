@@ -2,13 +2,10 @@ import { MdSearch, MdShoppingCart } from 'react-icons/md';
 import styled from 'styled-components';
 import { center } from '../assets/styles/GlobalStyle.js';
 import Account from './auth/Account.jsx';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { CartLogo } from './orders/Cart.jsx';
 
 export default function Header() {
-  const navigate = useNavigate();
-  const cart = () => {
-    navigate('/cart');
-  };
   return (
     <HeaderContainer>
       <Link to="/" className="logo">
@@ -19,9 +16,7 @@ export default function Header() {
         <MdSearch size="1.2em" />
       </div>
       <Account />
-      <Cart count="0" onClick={cart}>
-        <MdShoppingCart size="1.5em" color="#888888" />
-      </Cart>
+      <CartLogo />
     </HeaderContainer>
   );
 }
@@ -36,6 +31,7 @@ const HeaderContainer = styled.header`
   gap: 20px;
   padding: 20px 20px;
   background-color: #aaaaaa;
+  z-index: 1;
 
   .logo {
     font-size: 18px;
@@ -58,24 +54,4 @@ const HeaderContainer = styled.header`
     border-radius: 5px;
     padding: 10px;
   }
-`;
-
-const Cart = styled.div`
-  &::after {
-    content: '${({ count }) => count}';
-    background-color: #efefef;
-    z-index: 1000;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    z-index: 1000;
-    position: absolute;
-    left: 13px;
-    top: -3px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 14px;
-    font-family: 'Open Sans', sans-serif;
-  }
-  filter: drop-shadow(0px 0px 1px #aaaaaa);
 `;

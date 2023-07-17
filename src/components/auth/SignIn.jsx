@@ -7,7 +7,7 @@ import Header from '../Header';
 import { AuthContainer } from './AuthContainer';
 
 export default function SignIn() {
-  const { setInfo, ...rest } = useContext(Infos);
+  const { setInfo } = useContext(Infos);
   const navigate = useNavigate();
   const login = (e) => {
     e.preventDefault();
@@ -19,11 +19,10 @@ export default function SignIn() {
 
     server.post(`/sign-in`, user)
       .then(({ data }) => {
-        console.log(rest);
+        const {date, token, name} = data;
         localStorage.setItem('user', JSON.stringify(data));
-        setInfo({ user: data, ...rest })
+        setInfo({ user: { token, name }, date })
         navigate('/');
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);

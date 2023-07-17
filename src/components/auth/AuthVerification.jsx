@@ -17,7 +17,7 @@ export default function AuthVerification({ isAuthenticated, children }) {
         }, 10);
       }
     }
-  }, []);
+  }, [pathname]);
   verificationCount.current = 0;
 
   return <>{!isAuthenticated && !publicPaths.includes(pathname) ? <Log>Verificando...</Log> : children}</>;

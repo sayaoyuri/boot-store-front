@@ -5,7 +5,7 @@ import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import RegisterGamePage from './pages/RegisterGame';
 import GameDetailsPage from './pages/GameDetailsPage';
-import CartPage from './pages/purchase/CartPage';
+import CartPage from './pages/orders/CartPage';
 
 function App() {
   return (

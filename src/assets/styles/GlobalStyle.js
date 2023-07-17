@@ -14,7 +14,9 @@ export const GlobalStyle = createGlobalStyle`
   input, button {
     outline: none;
     border: none;
+    background-color: inherit;
   }
+
 `;
 
 export const Form = styled.form`
