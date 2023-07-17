@@ -10,7 +10,7 @@ export default function Home() {
   const { games, user, setInfo, ...info } = useContext(Infos);
   useEffect(() => {
     server
-      .get('/games', { headers: { Authorization: `Bearer ${user.token}` } })
+      .get('/games', { headers: { Authorization: `Bearer ${user?.token}` } })
       .then(({ data }) => {
         setInfo({ ...info, user, games: data });
         console.log(data);
