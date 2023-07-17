@@ -16,6 +16,10 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
     background-color: inherit;
   }
+  img {
+    object-fit: cover;
+    
+  }
 
 `;
 
