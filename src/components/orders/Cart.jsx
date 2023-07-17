@@ -10,8 +10,7 @@ import { Infos } from '../../utils/context.jsx';
 export function CartLogo() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { order } = useContext(Infos);
-  const count = order?.items?.length || 0;
+  const { count } = useContext(Infos);
 
   return (
     <CartLogoContainer count={count} onClick={() => navigate(pathname !== '/cart' ? '/cart' : '/')}>
@@ -48,18 +47,18 @@ export function Cart() {
   dc0b71f9-5c3b-4ba8-806c-dc730a805ab8
   */
   /* Depois fazer isso no Game Card */
-  const { order, user, setInfo, ...info } = useContext(Infos);
-  console.log(order, 'order');
+  const { order, user, updating, setCount, setInfo, ...info } = useContext(Infos);
   useEffect(() => {
     server
       .get('/order', { headers: { Authorization: `Bearer ${user.token}` } })
       .then(({ data }) => {
-        setInfo({ ...info, user, order: data });
+        setInfo({ ...info, user, order: data, setCount });
+        setCount(data.items.length);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [order]);
+  }, [updating]);
 
   return (
     <CartItemsContainer>
@@ -104,14 +103,16 @@ const CartItemsContainer = styled.main`
 `;
 
 const CartItem = ({ index, image, name, price }) => {
-  const { order, user, setInfo, ...info } = useContext(Infos);
+  let { user, count, updating, setUpdating, setInfo, setCount, ...info } = useContext(Infos);
 
   const deleteItem = () => {
     server
       .delete(`/order/${index}`, { headers: { Authorization: `Bearer ${user.token}` } })
       .then(({ data }) => {
         console.log(data);
-        setInfo({ ...info, user, order: order.items.splice(index, 1) });
+        setInfo({ ...info, user });
+        setUpdating(!updating);
+        setCount(--count);
       })
       .catch((err) => {
         console.log(err);

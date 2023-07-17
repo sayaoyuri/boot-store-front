@@ -8,17 +8,10 @@ import { MdPerson } from 'react-icons/md';
 export default function Account() {
   const { user } = useContext(Infos);
   const navigate = useNavigate();
-  const [account, setAccount] = useState(false);
 
   return (
     <AccountContainer>
-      {account && (
-        <ul>
-          <li>User Name</li>
-          <li>User Name</li>
-        </ul>
-      )}
-      <button onClick={() => (!user ? navigate('/sign-in') : setAccount(true))}>
+      <button onClick={() => (!user ? navigate('/sign-in') : navigate('/'))}>
         <MdPerson size="1.5em" />
         {!user ? 'Entrar' : user.name}
       </button>

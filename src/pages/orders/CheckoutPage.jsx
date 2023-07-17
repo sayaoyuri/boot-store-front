@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { center, Title } from '../../assets/styles/GlobalStyle.js';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { server } from '../../utils/core.js';
 import { Infos } from '../../utils/context.jsx';
 import Header from '../../components/Header.jsx';
@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
-  const { order, user, setInfo, ...info } = useContext(Infos);
+  const { order, user, setCount, setInfo, ...info } = useContext(Infos);
+  const [updating, setUpdating] = useState(false);
   useEffect(() => {
     server
       .get('/order', { headers: { Authorization: `Bearer ${user.token}` } })
@@ -18,13 +19,14 @@ export default function CheckoutPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [order]);
+  }, [updating]);
 
   const comprar = () => {
     server
       .post('/order/checkout', {}, { headers: { Authorization: `Bearer ${user.token}` } })
       .then(({ data }) => {
-        order.items = [];
+        setUpdating(!updating);
+        setCount(0);
         console.log(data);
       })
       .catch((err) => {
@@ -37,7 +39,7 @@ export default function CheckoutPage() {
       <Header />
       <CheckoutItemsContainer>
         <Title>Checkout - {order?.date.value}</Title>
-        <h2>{order?.items.length === 0 && 'Comprar Finalizada'}</h2>
+        <h2 className="log">{order?.items.length === 0 && 'Comprar Finalizada'}</h2>
         <ul>
           {order?.items.map((i, index) => (
             <CheckoutItem key={index} image={i.image} name={i.name} price={i.price} />
@@ -46,7 +48,7 @@ export default function CheckoutPage() {
         {order?.items.length === 0 ? (
           <button onClick={() => navigate('/')}>Voltar Para o Home</button>
         ) : (
-          <button onClick={comprar}>Comprar - R${order?.total}</button>
+          <button onClick={comprar}>Comprar - R${order?.total.toFixed(2)}</button>
         )}
       </CheckoutItemsContainer>
     </CheckoutContainer>
@@ -65,10 +67,13 @@ const CheckoutContainer = styled.section`
 const CheckoutItemsContainer = styled.main`
   ${center}
   flex-direction: column;
-  gap: 10px;
+  gap: 7.5px;
   height: 100%;
   width: 100%;
   overflow-y: auto;
+  .log {
+    margin-top: 5px;
+  }
   ul {
     ${center}
     gap: 10px;
